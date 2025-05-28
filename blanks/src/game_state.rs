@@ -35,13 +35,6 @@ impl GameState {
         }
     }
 
-    pub fn add_elapsed_time(&mut self) {
-        if let Some(start_time) = self.start_time {
-            let elapsed = start_time.elapsed();
-            self.total_time_seconds += elapsed.as_secs_f64();
-        }
-    }
-
     pub fn get_total_time(&self) -> Duration {
         Duration::from_secs_f64(self.total_time_seconds)
     }

@@ -82,6 +82,18 @@ fn main() {
                 if let Err(e) = config::save_config(&game_state.config) {
                     eprintln!("Failed to save config: {}", e);
                 }
+                
+                // Prompt user to continue or quit
+                println!("Press Enter to continue, or type 'q' or 'quit' to exit.");
+                let mut input = String::new();
+                if let Err(e) = std::io::stdin().read_line(&mut input) {
+                    eprintln!("Failed to read input: {}", e);
+                    break;
+                }
+                let trimmed = input.trim().to_lowercase();
+                if trimmed == "q" || trimmed == "quit" {
+                    break;
+                }
             },
             Err(e) => {
                 eprintln!("Error during gameplay: {}", e);
